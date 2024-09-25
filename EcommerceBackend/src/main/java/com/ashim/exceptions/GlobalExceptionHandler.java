@@ -14,4 +14,11 @@ public class GlobalExceptionHandler {
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(exception.getMessage());
 	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException exception) { 
+		return ResponseEntity
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(exception.getMessage());
+	}
 }
