@@ -21,7 +21,7 @@ public class UserServiceImpl implements IUserService {
 	}
 	
 	@Override
-	public User createProduct(User newUser) {
+	public User createUser(User newUser) {
 		return repo.save(newUser);
 	}
 
@@ -37,20 +37,41 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findAll();
 	}
 
 	@Override
 	public User updateUser(User updatedUser) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Long UserId = updatedUser.getId();
+		
+		Optional<User> optional = repo.findById(UserId);
+		if(optional.isPresent()) {
+			
+			User existingUser = optional.get();
+			
+			existingUser.setUsername(updatedUser.getUsername());
+			existingUser.setEmail(updatedUser.getEmail());
+			existingUser.setPassword(updatedUser.getPassword());
+			existingUser.setRole(updatedUser.getRole());
+			
+			return repo.save(existingUser); 
+		} else {
+			throw new UserNotFoundException("User with Id "+UserId+" not found");
+		}
+		
 	}
 
 	@Override
 	public String deleteUserById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<User> optional = repo.findById(id);
+		if(optional.isPresent()) {
+			User userToBeDeleted = optional.get();
+			repo.delete(userToBeDeleted);
+			return "User with Id "+id+" deleted successfully!";
+		} else {
+			throw new UserNotFoundException("User with ID "+id+" not found!");
+		}
 	}
 
 }

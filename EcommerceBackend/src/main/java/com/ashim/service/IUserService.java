@@ -7,7 +7,7 @@ import com.ashim.entity.User;
 
 public interface IUserService {
 
-	User createProduct(User newUser);
+	User createUser(User newUser);
 	User getUserById(Long id);
 	List<User> getAllUsers();
     User updateUser(User updatedUser);
