@@ -23,12 +23,13 @@ public class ProductController {
 	
 	private final ProductServiceImpl productService;
 	
+	private final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	
 	@Autowired
 	public ProductController(ProductServiceImpl productService) {
 		this.productService = productService;
 	}
 	
-	private final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@PostMapping()
 	public Product addProduct(@RequestBody Product newProduct) {
@@ -59,6 +60,7 @@ public class ProductController {
 	
 	@DeleteMapping("/{id}")
 	public String deleteStudentById(@PathVariable Long id) {
+		logger.info("DELETE request received: deleting product with id ", id);
 		return productService.deleteProductById(id);
 	}
 
