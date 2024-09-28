@@ -29,4 +29,11 @@ public class GlobalExceptionHandler {
 				.body(exception.getMessage());
 	}
 	
+	@ExceptionHandler(OrderNotFoundException.class)
+	public ResponseEntity<Object> handleOrderNotFoundException(OrderNotFoundException exception) { 
+		return ResponseEntity
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(exception.getMessage());
+	}
+	
 }
