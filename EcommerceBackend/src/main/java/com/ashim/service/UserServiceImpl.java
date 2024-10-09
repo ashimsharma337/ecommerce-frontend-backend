@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ashim.dao.IUserRepository;
@@ -15,6 +19,14 @@ public class UserServiceImpl implements IUserService {
     
 	private final IUserRepository repo;
 	
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+	
+	@Autowired 
+	private AuthenticationManager authManager;
+	
+	@Autowired
+	private JWTService jwtService;
+	
 	@Autowired
 	public UserServiceImpl(IUserRepository repo) {
 		this.repo = repo;
@@ -22,6 +34,7 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public User createUser(User newUser) {
+		newUser.setPassword(encoder.encode(newUser.getPassword()));
 		return repo.save(newUser);
 	}
 
@@ -72,6 +85,14 @@ public class UserServiceImpl implements IUserService {
 		} else {
 			throw new UserNotFoundException("User with ID "+id+" not found!");
 		}
+	}
+
+	public String verify(User user) {
+		Authentication authentication = 
+				authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+		if(authentication.isAuthenticated())
+			return jwtService.generateToken(user.getUsername());
+		return "Login fail";
 	}
 
 }
