@@ -63,4 +63,9 @@ public class UserController {
 		logger.info("Delete request received: deleting user with id "+id);
 		return service.deleteUserById(id);
 	}
+	
+	@PostMapping("/login")
+	public String login(@RequestBody User user) {
+		return service.verify(user);
+	}
 }

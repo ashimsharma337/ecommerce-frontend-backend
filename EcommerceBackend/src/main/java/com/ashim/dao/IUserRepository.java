@@ -6,4 +6,5 @@ import com.ashim.entity.User;
 
 public interface IUserRepository extends JpaRepository<User, Long>{
 
+	User findByUsername(String username);
 }
