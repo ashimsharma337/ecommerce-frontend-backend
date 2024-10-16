@@ -19,13 +19,14 @@ function MainNav() {
           <Nav.Link href="/help">HELP</Nav.Link>
         </Nav>
     
-        <Form style={{ width: "60%" }} >
+        <Form style={{ width: "60%" }}>
             <InputGroup>
             <FormControl
               type="search"
               placeholder="Search"
               aria-label="Search"
               id="input-field"
+              style={{ boxShadow: "none" }}
             />
             <Button variant="outline-secondary" id="button-search">
               <FaSearch />
