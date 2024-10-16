@@ -17,7 +17,7 @@
     border: 1px solid white; 
     background-color: #ffffff; 
     border-left: none; 
-    border-radius: 0; 
+    border-radius: 1; 
 }
 
 #button-search:hover {
