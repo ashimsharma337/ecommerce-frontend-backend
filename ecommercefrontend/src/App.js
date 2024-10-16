@@ -1,9 +1,11 @@
+import MainNav from "./components/common/navbar/mainNav";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-     <h1>Welcome to homepage.</h1>
-    </div>
+    <>
+    <MainNav />
+    </>
   );
 }
 
