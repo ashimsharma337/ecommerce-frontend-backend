@@ -2,14 +2,31 @@ import React from 'react';
 import { Navbar, Nav, Form, Button, FormControl, InputGroup } from 'react-bootstrap';
 import { FaSearch } from "react-icons/fa";
 import "./mainNav.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LoginComponent from '../../login/login';
 
 function MainNav() {
   const [showLogin, setShowLogin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+  };
 
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
+
+  // Callback function to handle login sucess 
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setShowLogin(false); // Close modal on login success
+  }
   return (
     <>
      <Navbar className = "navbar-custom" expand="lg">
@@ -37,13 +54,17 @@ function MainNav() {
         <Nav className="ms-auto">
           <Nav.Link href="/profile">PROFILE</Nav.Link>
           <Nav.Link href="/cart">CART</Nav.Link>
+          {isAuthenticated ? (
+            <Nav.Link onClick={handleLogout}>LOGOUT</Nav.Link>
+          ) : (
           <Nav.Link onClick={handleShowLogin}>LOGIN</Nav.Link>
+          )}
           <Nav.Link href="/signup">SIGN UP</Nav.Link>
         </Nav>
      </Navbar>
 
      {/* Login Modal */}
-     <LoginComponent show = {showLogin} handleClose={handleCloseLogin} />
+     <LoginComponent show = {showLogin} handleClose={handleCloseLogin} onLoginSuccess={handleLoginSuccess}/>
     </>
   )
 }

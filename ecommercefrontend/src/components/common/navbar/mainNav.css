@@ -29,4 +29,9 @@
     border: none;
 }
 
+.navbar-custom .nav-link:focus,
+.navbar-custom .nav-link:active {
+  color: #ffffff;
+}
+
 

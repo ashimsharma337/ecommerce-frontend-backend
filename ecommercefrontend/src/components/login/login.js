@@ -4,7 +4,7 @@ import "./login.css";
 import { useState } from 'react';
 import axios from 'axios';
 
-const LoginComponent = ({ show, handleClose }) => {
+const LoginComponent = ({ show, handleClose, onLoginSuccess }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,6 +18,7 @@ const LoginComponent = ({ show, handleClose }) => {
       });
       console.log(response.data);
       localStorage.setItem("token", response.data);
+      onLoginSuccess(); // Notify MainNav of login success
     } catch (error) {
       console.error("Error login in: ", error);
     }
