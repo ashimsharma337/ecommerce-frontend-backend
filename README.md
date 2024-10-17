@@ -30,7 +30,7 @@ git clone https://github.com/username/my-ecommerce-app.git
 
 - Run the application:
 ```bash 
-./mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 3. **Frontend Setup:**
