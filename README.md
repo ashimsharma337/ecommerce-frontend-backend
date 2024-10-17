@@ -2,26 +2,26 @@
 This project is an e-commerce web application built with a Java Spring Boot backend and a React.js frontend. The application aims to provide a full-featured online shopping experience, including user authentication, product browsing, cart management, and secure checkout.
 
 ## Features
-- **User Authentication: Secure login and registration with JWT token-based authentication.
-- **Product Management: View, search, and filter products.
-- **Shopping Cart: Add, remove, and update items in the shopping cart.
-- **Checkout: Secure checkout process with order management.
-- **Responsive UI: Built with React and styled with Bootstrap for a responsive and user-friendly interface.
+- User Authentication: Secure login and registration with JWT token-based authentication.
+- Product Management: View, search, and filter products.
+- Shopping Cart: Add, remove, and update items in the shopping cart.
+- Checkout: Secure checkout process with order management.
+- Responsive UI: Built with React and styled with Bootstrap for a responsive and user-friendly interface.
 ## Tech Stack
 ### Backend
-- **Java: Core backend language.
-- **Spring Boot: Framework for building microservices and RESTful APIs.
-- **JWT: JSON Web Tokens for secure authentication.
-- **MySQL: Relational database for storing user and product data.
+- Java: Core backend language.
+- Spring Boot: Framework for building microservices and RESTful APIs.
+- JWT: JSON Web Tokens for secure authentication.
+- MySQL: Relational database for storing user and product data.
 ### Frontend
-- **React.js: JavaScript library for building the user interface.
-- **React Bootstrap: Provides responsive and accessible UI components.
-- **Axios: For making HTTP requests to the backend API.
+- React.js: JavaScript library for building the user interface.
+- React Bootstrap: Provides responsive and accessible UI components.
+- Axios: For making HTTP requests to the backend API.
 ## Setup
 1. **Clone the repository:**
-   ```bash
+```bash 
 git clone https://github.com/username/my-ecommerce-app.git 
-
+```
 2. **Backend Setup:**
 
 - Navigate to the backend directory.
